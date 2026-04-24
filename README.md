@@ -16,9 +16,9 @@ Aplicación web desarrollada en Angular para la gestión de tickets de soporte.
 - Bootstrap
 - FontAwesome
 
-## 🔗 Demo
+##  Demo
 
-(pon aquí el link de Netlify cuando lo tengas)
+
 
 ##  Instalación
 
