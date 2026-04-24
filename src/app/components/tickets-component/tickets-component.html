@@ -1,0 +1,170 @@
+<div class="container mt-4">
+
+  <h2 class="mb-4">
+    <i class="fa-solid fa-ticket me-2"></i>
+    Gestión de Tickets
+  </h2>
+
+  <div class="row mb-4">
+
+    <div class="col-md-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <h6>Abiertos</h6>
+          <h3>{{ totalAbiertos }}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <h6>En progreso</h6>
+          <h3>{{ totalEnProgreso }}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <h6>Cerrados</h6>
+          <h3>{{ totalCerrados }}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <h6>Prioridad alta</h6>
+          <h3>{{ prioridadAlta }}</h3>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="alert alert-success" *ngIf="mensajeExito">
+    <i class="fa-solid fa-circle-check me-2"></i>
+    {{ mensajeExito }}
+  </div>
+
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label class="form-label">Buscar ticket</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Buscar por título, cliente o descripción"
+            [(ngModel)]="textoBusqueda"
+          />
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Categoría</label>
+          <select class="form-select" [(ngModel)]="filtroCategoria">
+            <option value="">Todas</option>
+            <option *ngFor="let categoria of categorias" [value]="categoria">
+              {{ categoria }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-md-3">
+          <label class="form-label">Prioridad</label>
+          <select class="form-select" [(ngModel)]="filtroPrioridad">
+            <option value="">Todas</option>
+            <option *ngFor="let prioridad of prioridades" [value]="prioridad">
+              {{ prioridad }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-md-2 d-flex align-items-end">
+          <button class="btn btn-secondary w-100" (click)="limpiarFiltros()">
+            <i class="fa-solid fa-eraser me-1"></i>
+            Limpiar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover align-middle shadow-sm">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Título</th>
+          <th>Cliente</th>
+          <th>Categoría</th>
+          <th>Prioridad</th>
+          <th>Estado</th>
+          <th class="text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ticket of ticketsFiltrados">
+          <td>{{ ticket.id }}</td>
+          <td>{{ ticket.titulo }}</td>
+          <td>{{ ticket.cliente }}</td>
+          <td>{{ ticket.categoria }}</td>
+          <td>
+            <span
+              class="badge"
+              [ngClass]="{
+                'bg-danger': ticket.prioridad === 'Alta',
+                'bg-warning text-dark': ticket.prioridad === 'Media',
+                'bg-success': ticket.prioridad === 'Baja'
+              }"
+            >
+              {{ ticket.prioridad }}
+            </span>
+          </td>
+
+          <td>
+            <span
+              class="badge"
+              [ngClass]="{
+                'bg-primary': ticket.estado === 'Abierto',
+                'bg-info text-dark': ticket.estado === 'En progreso',
+                'bg-secondary': ticket.estado === 'Cerrado'
+              }"
+            >
+              {{ ticket.estado }}
+            </span>
+          </td>
+
+          <td class="text-center">
+            <button class="btn btn-sm btn-outline-primary me-2" (click)="verTicket(ticket.id)">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+
+            <button
+             class="btn btn-sm"
+             [ngClass]="estaAsignado(ticket.id) ? 'btn-secondary' : 'btn-outline-success'"
+             [disabled]="estaAsignado(ticket.id)"
+             (click)="asignar(ticket)"
+           >
+             <i
+               class="fa-solid"
+               [ngClass]="estaAsignado(ticket.id) ? 'fa-check' : 'fa-user-check'"
+             ></i>
+             {{ estaAsignado(ticket.id) ? 'Asignado' : 'Asignar' }}
+           </button>
+          </td>
+        </tr>
+
+        <tr *ngIf="ticketsFiltrados.length === 0">
+          <td colspan="7" class="text-center text-muted py-4">
+            No se encontraron tickets con los filtros aplicados.
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>

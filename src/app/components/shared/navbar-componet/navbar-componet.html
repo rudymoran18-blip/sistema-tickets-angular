@@ -1,0 +1,99 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold">MiApp</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- MENÚ IZQUIERDA -->
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/home']">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/tickets']">Tickets</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link position-relative" [routerLink]="['/mis-tickets']">
+            Mis Tickets
+
+            <span
+              *ngIf="cantidadTickets > 0"
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              {{ cantidadTickets }}
+            </span>
+          </a>
+        </li>
+
+      </ul>
+      <!-- MENÚ DERECHA -->
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link position-relative"
+            role="button"
+            data-bs-toggle="dropdown">
+            <i class="fa-solid fa-bell fs-5"></i>
+            <span
+              *ngIf="cantidadTickets > 0"
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              {{ cantidadTickets }}
+            </span>
+          </a>
+
+          <!-- DROPDOWN -->
+          <ul class="dropdown-menu dropdown-menu-end shadow" style="min-width: 320px;">
+            <li>
+              <h6 class="dropdown-header">
+                Mis Tickets ({{ cantidadTickets }})
+              </h6>
+            </li>
+
+            <!-- SI HAY TICKETS -->
+            <ng-container *ngIf="misTickets.length > 0; else sinTickets">
+              <li *ngFor="let t of misTickets.slice(0,3)">
+                <a class="dropdown-item">
+                  <strong>Ticket #{{ t.id }}</strong><br>
+                  <small class="text-muted d-block">
+                    {{ t.titulo }}
+                  </small>
+                  <span
+                    class="badge mt-1"
+                    [ngClass]="{
+                      'bg-danger': t.prioridad === 'Alta',
+                      'bg-warning text-dark': t.prioridad === 'Media',
+                      'bg-success': t.prioridad === 'Baja'
+                    }"
+                  >
+                    {{ t.prioridad }}
+                  </span>
+                </a>
+              </li>
+            </ng-container>
+            <!-- SIN TICKETS -->
+            <ng-template #sinTickets>
+              <li>
+                <span class="dropdown-item text-muted text-center">
+                  No tienes tickets asignados
+                </span>
+              </li>
+            </ng-template>
+
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <a class="dropdown-item text-center text-primary"
+                 [routerLink]="['/mis-tickets']">
+                Ver todos mis tickets
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

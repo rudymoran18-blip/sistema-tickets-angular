@@ -1,0 +1,80 @@
+<div class="container mt-4">
+  <h2 class="mb-4">
+    <i class="fa-solid fa-user-check me-2"></i>
+    Mis tickets asignados
+  </h2>
+  <div *ngIf="tickets.length > 0; else noTicket">
+    <div *ngFor="let t of tickets" class="card mb-3 shadow-sm">
+      <div class="card-body">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <div class="d-flex align-items-start">
+              <span
+                class="badge me-3 mt-1"
+                [ngClass]="{
+                  'bg-danger': t.prioridad === 'Alta',
+                  'bg-warning text-dark': t.prioridad === 'Media',
+                  'bg-success': t.prioridad === 'Baja'
+                }"
+              >
+                {{ t.prioridad }}
+              </span>
+              <div>
+                <h5 class="card-title mb-1">
+                  {{ t.titulo }}
+                </h5>
+                <p class="text-muted mb-2">
+                  <small>
+                    <strong>Ticket #{{ t.id }}</strong>
+                    | Categoría: {{ t.categoria }}
+                    | Cliente: {{ t.cliente }}
+                  </small>
+                </p>
+                <p class="mb-0 text-muted small">
+                  {{ t.descripcion }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 text-md-end mt-3 mt-md-0">
+            <span
+              class="badge mb-2 d-block"
+              [ngClass]="{
+                'bg-primary': t.estado === 'Abierto',
+                'bg-info text-dark': t.estado === 'En progreso',
+                'bg-secondary': t.estado === 'Cerrado'
+              }"
+            >
+              {{ t.estado }}
+            </span>
+            <button
+              (click)="verTicket(t.id)"
+              class="btn btn-sm btn-outline-primary"
+            >
+              <i class="fa-solid fa-eye me-1"></i>
+              Ver detalle
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<ng-template #noTicket>
+  <div class="d-flex justify-content-center align-items-center" style="min-height: 250px;">
+    <div class="text-center p-4 border rounded shadow-sm bg-light" style="max-width: 400px; width: 100%;">
+      <div class="mb-3">
+        <i class="fa-solid fa-inbox fa-3x text-secondary"></i>
+      </div>
+      <h5 class="mb-2 fw-bold">Sin tickets asignados</h5>
+      <p class="text-muted small mb-3">
+        Aún no tienes tickets asignados. Cuando asignes uno, aparecerá aquí.
+      </p>
+      <button class="btn btn-outline-primary btn-sm" routerLink="/tickets">
+        <i class="fa-solid fa-ticket me-1"></i>
+        Ver todos los tickets
+      </button>
+    </div>
+  </div>
+</ng-template>

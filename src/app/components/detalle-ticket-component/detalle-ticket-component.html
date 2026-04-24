@@ -1,0 +1,110 @@
+<div class="container py-4" *ngIf="ticket as t; else noEncontrado">
+
+  <div class="mb-3">
+    <button (click)="volver()" class="btn btn-outline-secondary">
+      <i class="fa-solid fa-arrow-left me-1"></i>
+      Volver
+    </button>
+  </div>
+
+  <div class="alert alert-info" *ngIf="mensaje">
+    <i class="fa-solid fa-circle-info me-2"></i>
+    {{ mensaje }}
+  </div>
+
+  <div class="card shadow-sm border-0">
+    <div class="card-header bg-dark text-white">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h4 class="mb-0">Ticket #{{ t.id }}</h4>
+          <small>{{ t.cliente }}</small>
+        </div>
+        <span
+          class="badge"
+          [ngClass]="{
+            'bg-primary': t.estado === 'Abierto',
+            'bg-info text-dark': t.estado === 'En progreso',
+            'bg-secondary': t.estado === 'Cerrado'
+          }"
+        >
+          {{ t.estado }}
+        </span>
+      </div>
+    </div>
+    <div class="card-body">
+      <h5 class="fw-bold mb-3">{{ t.titulo }}</h5>
+      <div class="row mb-4">
+        <div class="col-md-4 mb-3">
+          <small class="text-muted d-block">Categoría</small>
+          <span class="fw-semibold">{{ t.categoria }}</span>
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <small class="text-muted d-block">Prioridad</small>
+          <span
+            class="badge"
+            [ngClass]="{
+              'bg-danger': t.prioridad === 'Alta',
+              'bg-warning text-dark': t.prioridad === 'Media',
+              'bg-success': t.prioridad === 'Baja'
+            }"
+          >
+            {{ t.prioridad }}
+          </span>
+        </div>
+        <div class="col-md-4 mb-3">
+          <small class="text-muted d-block">Asignación</small>
+          <span
+            class="badge"
+            [ngClass]="estaAsignado() ? 'bg-success' : 'bg-secondary'"
+          >
+            {{ estaAsignado() ? 'Asignado' : 'Sin asignar' }}
+          </span>
+        </div>
+      </div>
+      <hr>
+      <div class="mb-4">
+        <h6 class="fw-bold">
+          <i class="fa-solid fa-align-left me-1"></i>
+          Descripción
+        </h6>
+
+        <p class="text-muted mb-0">
+          {{ t.descripcion }}
+        </p>
+      </div>
+    </div>
+
+    <div class="card-footer bg-light">
+      <div class="d-flex justify-content-end gap-2">
+        <button
+          class="btn"
+          [ngClass]="estaAsignado() ? 'btn-secondary' : 'btn-success'"
+          [disabled]="estaAsignado() || t.estado === 'Cerrado'"
+          (click)="asignarTicket()"
+        >
+          <i class="fa-solid fa-user-check me-1"></i>
+          {{ estaAsignado() ? 'Ya asignado' : 'Asignar' }}
+        </button>
+        <button
+          class="btn"
+          [ngClass]="t.estado === 'Cerrado' ? 'btn-secondary' : 'btn-danger'"
+          [disabled]="t.estado === 'Cerrado'"
+          (click)="cerrarTicket()"
+        >
+          <i class="fa-solid fa-lock me-1"></i>
+          {{ t.estado === 'Cerrado' ? 'Cerrado' : 'Cerrar ticket' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noEncontrado>
+  <div class="container py-5">
+    <div class="alert alert-danger text-center">
+      <i class="fa-solid fa-triangle-exclamation me-2"></i>
+      No se encontró el ticket solicitado.
+    </div>
+  </div>
+</ng-template>
