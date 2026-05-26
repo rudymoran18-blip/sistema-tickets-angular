@@ -6,7 +6,7 @@ Aplicación web desarrollada en Angular para la gestión de tickets de soporte t
 
 ##  Demo
 
-👉 https://tickets-soporte-angular.netlify.app
+https://tickets-soporte-angular.netlify.app
 
 ---
 
