@@ -4,13 +4,13 @@ Aplicación web desarrollada en Angular para la gestión de tickets de soporte t
 
 ---
 
-## 🔗 Demo
+##  Demo
 
 👉 https://tickets-soporte-angular.netlify.app
 
 ---
 
-## 🚀 Funcionalidades
+##  Funcionalidades
 
 - Asignación de tickets (evita duplicados)
 - Filtros por categoría y prioridad
@@ -21,7 +21,7 @@ Aplicación web desarrollada en Angular para la gestión de tickets de soporte t
 
 ---
 
-## 🛠️ Tecnologías
+##  Tecnologías
 
 - Angular
 - TypeScript
@@ -32,7 +32,7 @@ Aplicación web desarrollada en Angular para la gestión de tickets de soporte t
 
 ---
 
-## 🧠 Decisiones técnicas
+##  Decisiones técnicas
 
 - Se implementó arquitectura basada en **servicios (Services)** para manejar el estado
 - Se manejó navegación con **Angular Router**
@@ -44,7 +44,7 @@ Aplicación web desarrollada en Angular para la gestión de tickets de soporte t
 
 ---
 
-## 📦 Instalación
+##  Instalación
 
 ```bash
 npm install
