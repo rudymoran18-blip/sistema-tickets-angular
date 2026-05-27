@@ -14,3 +14,125 @@ body {
 router-outlet + * , .main-content {
   flex: 1 0 auto;
 }
+/* ==========================================================================
+   Estructura de Contenedores Compartidos
+   ========================================================================== */
+.container-content {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+  max-width: 1200px; /* Evita que las tablas y tarjetas se estiren hasta el infinito */
+  margin: 0 auto;
+}
+
+/* Encabezados de Módulo */
+.page-header-tickets {
+  margin-bottom: 1.75rem;
+}
+.page-header-tickets h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+/* ==========================================================================
+   Rediseño de Tarjetas de Tickets ("Mis Tickets")
+   ========================================================================== */
+.ticket-assigned-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background-color: #ffffff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ticket-assigned-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Pastillas de prioridad estilizadas (Soft/Pastel) */
+.priority-pill {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* Pastilla de estado LIMITADA (Evita el estiramiento de tu captura) */
+.status-pill {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  width: fit-content; /* Fuerza a la pastilla a medir solo lo que mide su texto */
+}
+
+/* Botón de ver detalle limpio */
+.btn-action-detail {
+  background: #ffffff;
+  color: #145388;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.btn-action-detail:hover {
+  background-color: #edf7ff;
+  border-color: #145388;
+  color: #145388;
+}
+
+/* ==========================================================================
+   Estado Vacío (Empty State) Estilizado e Institucional
+   ========================================================================== */
+.empty-state {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 40px 24px;
+  text-align: center;
+  max-width: 500px;
+  margin: 3rem auto 0; /* Lo posiciona elegantemente arriba en lugar de flotar al centro */
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+}
+
+.empty-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: #edf7ff;
+  color: #145388;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-icon i {
+  font-size: 28px;
+}
+
+.empty-state h4 {
+  font-weight: 700;
+  color: #1e293b;
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  color: #64748b;
+  font-size: 0.9rem;
+  max-width: 380px;
+  margin: 0 auto 20px;
+  line-height: 1.5;
+}
