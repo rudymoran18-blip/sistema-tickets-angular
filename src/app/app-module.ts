@@ -10,6 +10,7 @@ import { DetalleTicketComponent } from './components/detalle-ticket-component/de
 import { MisTicketsComponent } from './components/mis-ticekts-component/mis-ticekts-component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { FooterComponent } from './components/footer-component/footer-component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CommonModule } from '@angular/common';
     HomeComponent,
     TicketsComponent,
     DetalleTicketComponent,
-    MisTicketsComponent
+    MisTicketsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

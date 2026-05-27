@@ -1,0 +1,18 @@
+footer {
+  /* Asegura un gris oscuro corporativo en vez de un negro plano */
+  background-color: #1e2229 !important;
+}
+
+.text-hover-light {
+  transition: color 0.15s ease-in-out;
+}
+
+.text-hover-light:hover {
+  color: #fff !important;
+}
+
+@media (max-width: 576px) {
+  .hidden-xs {
+    display: none;
+  }
+}

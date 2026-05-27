@@ -1,0 +1,16 @@
+/* Fuerza a que el cuerpo de la aplicación ocupe toda la pantalla */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Configura el contenedor principal en modo columna flex */
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Si tienes un contenedor principal envolviendo al router-outlet, ponle flex: 1 */
+router-outlet + * , .main-content {
+  flex: 1 0 auto;
+}

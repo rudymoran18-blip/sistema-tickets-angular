@@ -1,2 +1,9 @@
-<app-navbar-componet></app-navbar-componet>
-<router-outlet></router-outlet>
+<div class="d-flex flex-column min-vh-100 bg-light">
+  <app-navbar-componet></app-navbar-componet>
+
+  <main class="flex-grow-1 p-3 p-md-4">
+    <router-outlet></router-outlet>
+  </main>
+
+  <app-footer-component></app-footer-component>
+</div>
